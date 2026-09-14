@@ -1,0 +1,30 @@
+/* Iconos locales del asistente. No requiere fuentes ni conexiones externas. */
+.fa-solid {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+.fa-plus::before { content: "+"; }
+.fa-gear::before { content: "\2699\FE0E"; }
+.fa-volume-xmark::before { content: "\1F507"; }
+.fa-xmark::before { content: "\00D7"; }
+.fa-bars::before { content: "\2630"; }
+.fa-file-lines::before { content: "\1F4C4"; }
+.fa-robot::before { content: "\1F916"; }
+.fa-eye::before { content: "\1F441\FE0E"; }
+.fa-brain::before { content: "\1F9E0"; }
+.fa-paperclip::before { content: "\1F4CE"; }
+.fa-microphone::before { content: "\1F399\FE0E"; }
+.fa-trash-can::before { content: "\1F5D1\FE0E"; }
+.fa-paper-plane::before { content: "\27A4"; }
+.fa-user::before { content: "\1F464"; }
+.fa-stopwatch::before { content: "\23F1\FE0E"; }
+.fa-arrow-up::before { content: "\2191"; }
+.fa-arrow-down::before { content: "\2193"; }
+.fa-microchip::before { content: "\1F4BB"; }
+.fa-copy::before { content: "\2398"; }
+.fa-volume-high::before { content: "\1F50A"; }
+.fa-envelope::before { content: "\2709\FE0E"; }
+.fa-download::before { content: "\2193"; }

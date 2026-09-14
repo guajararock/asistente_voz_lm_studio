@@ -1,0 +1,50 @@
+.git
+.gitignore
+.devcontainer
+.venv
+venv
+env
+__pycache__
+*.py[cod]
+*.log
+*.tmp
+.env
+.env.*
+!.env.example
+conversaciones_guardadas
+archivos_subidos
+Dockerfile*
+docker-compose*.yml
+start-dev.sh
+docker-up.sh
+README.md
+QUICKSTART.md
+Actualizar dependencias.bat
+LICENSE# VCS and editor files
+.git
+.gitignore
+.vscode
+.idea
+
+# Python virtual environments and caches
+.venv
+venv
+env
+__pycache__
+*.py[cod]
+*.pyc
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Project runtime artifacts
+conversaciones_guardadas
+archivos_subidos
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db

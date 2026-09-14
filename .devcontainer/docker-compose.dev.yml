@@ -1,0 +1,10 @@
+services:
+  asistente-voz:
+    build:
+      target: dev
+    volumes:
+      - ..:/app
+      - ../conversaciones_guardadas:/app/conversaciones_guardadas
+    read_only: false
+    stdin_open: true
+    tty: true

@@ -1,0 +1,32 @@
+services:
+  asistente-voz:
+    build:
+      context: .
+      target: runtime
+    container_name: asistente_lmstudio_app
+    working_dir: /app
+    command: ["python3", "src/app.py"]
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - ./conversaciones_guardadas:/app/conversaciones_guardadas
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      FLASK_ENV: production
+      LM_STUDIO_URL: http://host.docker.internal:1234/v1/chat/completions
+      ASISTENTE_API_TOKEN: ${ASISTENTE_API_TOKEN:-}
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/', timeout=2)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

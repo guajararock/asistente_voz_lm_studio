@@ -1,0 +1,34 @@
+{
+  "name": "Asistente Voz LM Studio",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "docker-compose.dev.yml"
+  ],
+  "service": "asistente-voz",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": false,
+  "forwardPorts": [5000],
+  "portsAttributes": {
+    "5000": {
+      "label": "Asistente LM Studio",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "remoteEnv": {
+    "FLASK_ENV": "development",
+    "LM_STUDIO_URL": "http://host.docker.internal:1234/v1/chat/completions"
+  }
+}

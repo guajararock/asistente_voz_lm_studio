@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Compile and import
+        run: |
+          python -m py_compile src/app.py
+          python -c "import sys; sys.path.insert(0, 'src'); import app; print('imports-ok')"
+      - name: Audit dependencies
+        run: |
+          python -m pip install pip-audit
+          pip-audit -r requirements.txt
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate production Compose
+        run: docker compose config --quiet
+      - name: Validate Dev Container Compose
+        run: docker compose -f docker-compose.yml -f .devcontainer/docker-compose.dev.yml config --quiet
+      - name: Build runtime image
+        run: docker build --target runtime -t asistente-lmstudio:runtime .
+      - name: Build development image
+        run: docker build --target dev -t asistente-lmstudio:dev .
+      - name: Verify runtime user and imports
+        run: |
+          test "$(docker image inspect asistente-lmstudio:runtime --format '{{.Config.User}}')" = "65532"
+          docker run --rm asistente-lmstudio:runtime python3 -c "import flask, requests, werkzeug; print('runtime-imports-ok')"

@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Variables de entorno y secretos
+.env
+.env.*
+!.env.example
+
+# Datos generados por la aplicacion
+conversaciones_guardadas/
+archivos_subidos/
+
+# Herramientas y sistema operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs y archivos temporales
+*.log
+*.tmp
+
+# Docker y contenedores
+# Se mantiene la configuracion del Dev Container versionada para que el proyecto
+# pueda abrirse correctamente en contenedores y entornos de desarrollo.
+# .devcontainer/ no se ignora para que quede disponible en Git.
+
+docker-compose.override.yml
+
+# Script local opcional para variables de entorno del usuario
+.env.local
